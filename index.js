@@ -16,15 +16,12 @@ class Student extends User {
   }
 
   set yearOfAdmission(year) {
-    debugger;
-    const bufferYear = Number(year); // забивается стэк, не могу пофиксить, дебагер пробовал, не помогло ((
+    const bufferYear = Number(year);
     if (typeof(bufferYear) !== 'number') {
       throw new TypeError("Incorect input, incoming data must be numbers");
     }
-    if (bufferYear < 1920) {
-      throw new RangeError("You must be dead, dont you?");
-    }
-    this.yearOfAdmission = new Date(bufferYear);
+    this._yearOfAdmission = new Date();
+    this._yearOfAdmission.setFullYear(bufferYear);
   }
 
   get yearOfAdmission() {
